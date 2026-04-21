@@ -61,7 +61,7 @@ const FigmaIcon = () => (
 
 export const ContactSection = () => {
   return (
-    <section className="contact-section relative flex flex-col items-center justify-center min-h-screen px-4 py-20">
+    <section id="contact" className="contact-section relative flex flex-col items-center justify-center min-h-screen px-4 py-20">
       {/* Card */}
       <motion.div
         className="contact-card relative w-full max-w-xl rounded-3xl px-10 py-14 flex flex-col items-center gap-6"

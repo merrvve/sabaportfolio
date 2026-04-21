@@ -58,7 +58,7 @@ const ProjectsBox = () => (
 
 export const ProjectsSection = () => {
   return (
-    <section className="relative flex min-h-screen">
+    <section id="projects" className="relative flex min-h-screen">
       {/* Left label column — matches "About Me" style */}
       <div className="relative w-24 shrink-0 flex items-center justify-center">
         <ProjectsBox />

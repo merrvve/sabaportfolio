@@ -4,11 +4,11 @@ import { Logo } from "./AboutMotion/Logo"
 const navLinks = [
     {
         name: "About Me",
-        link: "/about"
+        link: "#about"
     },
     {
         name: "Projects",
-        link: "/projects"
+        link: "#projects"
     },
     {
         name: "Artwork",
@@ -16,7 +16,7 @@ const navLinks = [
     },
     {
         name: "Contact",
-        link: "/contact"
+        link: "#contact"
     },
 ]
 
@@ -42,7 +42,7 @@ function splitText(text: string) {
                         )
                     })
                 }
-                <button class="rounded-lg ml-3 p-2 bg-black text-white hover:bg-slate-800 transition duration-500">
+                <button class="cursor-pointer rounded-lg ml-3 px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500">
                     <span class="m-1">
                         Download CV
                     </span>
