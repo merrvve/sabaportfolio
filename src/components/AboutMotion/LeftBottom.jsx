@@ -1,35 +1,42 @@
 import { motion } from "framer-motion";
-
 import { draw } from "./draw";
+
+const viewport = { once: true, amount: 0.2 };
+
+const AboutBox = () => (
+  <motion.svg
+    width="90"
+    height="520"
+    viewBox="0 0 90 520"
+    initial="hidden"
+    whileInView="visible"
+    viewport={viewport}
+    className="absolute left-0 top-0 h-full"
+  >
+    <motion.path
+      d="M0 1H58C74.569 1 88 14.4315 88 31V520"
+      stroke="black"
+      strokeWidth="1.5"
+      fill="none"
+      variants={draw}
+      custom={0}
+    />
+  </motion.svg>
+);
+
 export const LeftBottom = () => {
-    return (
-        <>
-        
-      <motion.svg
-        width="735" height="526"
-        viewBox="0 0 735 526"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{once:true, amount:0.2}}
-      >
-        <motion.path
-            d="M0 1H127C143.569 1 157 14.4315 157 31V1087"
-            
-            stroke="black"
-            fill="none"
-            variants={draw}
-                custom={1}
-            />
-      
-      </motion.svg>
-      <motion.h1 className="p-0 font-bold text-6xl absolute bottom-56 -left-5 -rotate-90"
-      initial={{ opacity: 0  }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay:1 }}
+  return (
+    <>
+      <AboutBox />
+      <motion.h1
+        className="p-0 font-bold text-6xl -rotate-90 whitespace-nowrap relative z-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        viewport={viewport}
       >
         About Me
       </motion.h1>
-      </>
-    );
-  }
-
+    </>
+  );
+};

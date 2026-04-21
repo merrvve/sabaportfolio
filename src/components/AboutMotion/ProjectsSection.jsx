@@ -34,19 +34,19 @@ const projects = [
   },
 ];
 
-/* Rounded-rectangle outline drawn as a path so pathLength animation works */
+/* Corner-bracket line matching About Me style */
 const ProjectsBox = () => (
   <motion.svg
     width="90"
-    height="290"
-    viewBox="0 0 90 290"
+    height="520"
+    viewBox="0 0 90 520"
     initial="hidden"
     whileInView="visible"
     viewport={viewport}
-    className="absolute left-0 top-1/2 -translate-y-1/2"
+    className="absolute left-0 top-0 h-full"
   >
     <motion.path
-      d="M22,2 H68 Q88,2 88,22 V268 Q88,288 68,288 H22 Q2,288 2,268 V22 Q2,2 22,2 Z"
+      d="M0 1H58C74.569 1 88 14.4315 88 31V520"
       stroke="black"
       strokeWidth="1.5"
       fill="none"
@@ -66,7 +66,7 @@ export const ProjectsSection = () => {
           className="p-0 font-bold text-6xl -rotate-90 whitespace-nowrap relative z-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 1 }}
           viewport={viewport}
         >
           Projects
