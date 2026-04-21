@@ -1,0 +1,84 @@
+.card1 {
+  border-radius: 25% 75% 25% 25% / 75% 47% 53% 25%;
+ width: 200px;
+  height: 200px;
+  margin: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+   box-shadow: 20px 20px 60px #bebebe,
+    -20px -20px 60px #ffffff;
+}
+
+
+
+.navbar-back {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+}
+
+
+
+.aboutSection {
+  height: 100vh;
+  width: 100%;
+}
+
+.contact-section {
+  background: radial-gradient(
+    farthest-side at bottom left,
+    rgba(255, 0, 255, 0.45),
+    transparent
+  ),
+  radial-gradient(
+    farthest-side at top left,
+    rgba(240, 98, 146, 0.45),
+    transparent
+  ),
+  radial-gradient(
+    farthest-side at bottom right,
+    rgba(241, 207, 116, 0.6),
+    transparent
+  ),
+  radial-gradient(
+    farthest-corner at top right,
+    rgba(100, 130, 220, 0.55),
+    transparent
+  );
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 48px rgba(60, 80, 160, 0.12), 0 1.5px 8px rgba(255,255,255,0.18) inset;
+}
+
+.hero {
+  height: 100vh;
+  width: 100%;
+   background: radial-gradient(
+    farthest-side at bottom left,
+    rgba(255, 0, 255, 0.5), 
+    transparent
+  ),
+  radial-gradient(
+    farthest-side at top left,
+    rgba(240,98,146,0.5), 
+    transparent
+  ),
+  radial-gradient(
+    farthest-side at bottom right,
+    rgba(241,207,116,0.69), 
+    transparent
+  ),
+  radial-gradient(
+    farthest-corner at top right,
+    rgba(255, 50, 50, 0.5), 
+    transparent
+  );
+}

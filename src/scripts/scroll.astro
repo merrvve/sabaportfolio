@@ -1,0 +1,42 @@
+
+<script>
+  const initializeObserver = () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if(entry.target.classList.contains("swing-in-left")) {
+              entry.target.classList.remove("swing-in-left");
+              entry.target.classList.add("swing-in-left-anim");
+            }
+            else {
+              entry.target.classList.add("scroll-animated-default");
+			  
+            }
+            
+
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+      }
+    );
+
+    const elements = document.querySelectorAll(".scroll-animation");
+
+
+    elements.forEach((element) => {
+      
+        observer.observe(element);
+     
+    });
+  };
+
+  const handlePageEvents = () => {
+    initializeObserver();
+  };
+
+  document.addEventListener("DOMContentLoaded", handlePageEvents);
+</script>
