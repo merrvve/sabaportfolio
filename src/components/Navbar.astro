@@ -25,41 +25,88 @@ function splitText(text: string) {
     return { left: text.slice(0, mid), right: text.slice(mid) };
 }
 ---
-<nav class="p-1 z-30 hidden md:block">
-    <div class="flex justify-between flex-row m-3 p-3 rounded-2xl navbar-back">
+<nav class="p-1 z-30">
+    <div class="flex justify-between items-center flex-row m-3 p-3 rounded-2xl navbar-back">
         <div class="p-1">
             <Logo client:load/>
         </div>
-        <div>
-            <div class="hidden md:block items-center flex">
-                {
-                    navLinks.map((navLink) => {
-                        const { left, right } = splitText(navLink.name);
-                        return (
-                            <a class="link--surinami" href={navLink.link}>
-                                <span data-letters-l={left} data-letters-r={right}>{navLink.name}</span>
-                            </a>
-                        )
-                    })
-                }
-                <button class="cursor-pointer rounded-lg ml-3 px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500">
-                    <span class="m-1">
-                        Download CV
-                    </span>
 
-                    <span class="m-1">
-                        <svg class="w-[1.25rem] inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM14 9H19L12 16L5 9H10V3H14V9Z"></path></svg>
-                    </span>
-                </button>
-
-            </div>
-            <div class="block md:hidden cursor-pointer rounded p-2 transition duration-500 hover:bg-slate-300">
-                <svg class="w-[1.25rem] inline " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
-            </div>
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center">
+            {
+                navLinks.map((navLink) => {
+                    const { left, right } = splitText(navLink.name);
+                    return (
+                        <a class="link--surinami" href={navLink.link}>
+                            <span data-letters-l={left} data-letters-r={right}>{navLink.name}</span>
+                        </a>
+                    )
+                })
+            }
+            <button class="cursor-pointer rounded-lg ml-3 px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500">
+                <span class="m-1">Download CV</span>
+                <span class="m-1">
+                    <svg class="w-5 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM14 9H19L12 16L5 9H10V3H14V9Z"></path></svg>
+                </span>
+            </button>
         </div>
 
+        <!-- Hamburger button (mobile only) -->
+        <button id="hamburger-btn" class="md:hidden cursor-pointer rounded p-2 transition duration-500 hover:bg-slate-300" aria-label="Toggle menu">
+            <svg id="icon-open" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
+            <svg id="icon-close" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+        </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden flex-col px-6 pb-4 gap-3 navbar-back mx-3 mb-3 rounded-2xl md:hidden">
+        {
+            navLinks.map((navLink) => (
+                <a class="mobile-link" href={navLink.link}>
+                    {navLink.name}
+                </a>
+            ))
+        }
+        <button class="cursor-pointer rounded-lg px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500 self-start mt-1">
+            <span class="m-1">Download CV</span>
+            <span class="m-1">
+                <svg class="w-5 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM14 9H19L12 16L5 9H10V3H14V9Z"></path></svg>
+            </span>
+        </button>
     </div>
 </nav>
+
+<script>
+    const btn = document.getElementById('hamburger-btn');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    btn?.addEventListener('click', () => {
+        const isOpen = !menu?.classList.contains('hidden');
+        if (isOpen) {
+            menu?.classList.add('hidden');
+            menu?.classList.remove('flex');
+            iconOpen?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+        } else {
+            menu?.classList.remove('hidden');
+            menu?.classList.add('flex');
+            iconOpen?.classList.add('hidden');
+            iconClose?.classList.remove('hidden');
+        }
+    });
+
+    // Close menu when a link is clicked
+    menu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu?.classList.add('hidden');
+            menu?.classList.remove('flex');
+            iconOpen?.classList.remove('hidden');
+            iconClose?.classList.add('hidden');
+        });
+    });
+</script>
 
 <style>
 .link--surinami {
@@ -137,5 +184,20 @@ function splitText(text: string) {
 .link--surinami:hover span::after {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+}
+
+.mobile-link {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: #334155;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 0.4em 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.mobile-link:last-of-type {
+    border-bottom: none;
 }
 </style>

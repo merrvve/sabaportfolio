@@ -140,11 +140,11 @@ export default function HeroAnimation() {
       ref={scope}
       className="flex flex-col items-center justify-center gap-6 w-full h-full"
     >
-      <div id="h1w" className="w-full max-w-xl px-4">
+      <div id="h1w" className="w-full max-w-xl md:max-w-184 px-4">
         <Hero1Svg pathClass="h1p" />
       </div>
 
-      <div id="h2w" className="w-full max-w-sm px-4" style={{ opacity: 0 }}>
+      <div id="h2w" className="w-full max-w-sm md:max-w-124 px-4" style={{ opacity: 0 }}>
         <Hero2Svg pathClass="h2p" />
       </div>
 
@@ -157,7 +157,7 @@ export default function HeroAnimation() {
         <div className="flex items-center gap-4">
           <button
             onClick={() => scrollTo("contact")}
-            className="cursor-pointer rounded-lg ml-3 px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500"
+            className="cursor-pointer rounded-lg ml-3 px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500 whitespace-nowrap"
           >
             <span class="m-1">Contact Me</span>
 
@@ -171,14 +171,14 @@ export default function HeroAnimation() {
           </button>
           <button
             onClick={() => scrollTo("projects")}
-            className="cursor-pointer rounded-lg ml-3 px-4 py-2 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
+            className="cursor-pointer rounded-lg ml-3 px-4 py-2 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors whitespace-nowrap"
           >
             <span class="m-1">See My Work</span>
 
             <span class="m-1">
               
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down inline" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down inline" viewBox="0 0 16 16">
+  <path fillRule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
 </svg>
                 
             </span>
