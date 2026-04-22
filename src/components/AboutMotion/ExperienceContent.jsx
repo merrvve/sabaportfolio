@@ -79,7 +79,7 @@ const awards = [
 
 export const ExperienceContent = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-10 px-6 md:px-16 py-6 w-full">
+    <div className="flex flex-col md:flex-row gap-10 px-6 md:px-24 py-6 w-full">
       {/* Left — Experience */}
       <div className="flex-1 flex flex-col gap-8">
         {experiences.map((exp, i) => (
@@ -96,9 +96,9 @@ export const ExperienceContent = () => {
 
             <div className="flex flex-col gap-1">
               <span className="font-semibold text-sm leading-tight">{exp.company}</span>
-              <span className="text-[11px] text-gray-500 leading-tight">{exp.location}</span>
-              <span className="text-[11px] text-gray-500 leading-tight mb-2">{exp.role}</span>
-              <p className="text-[12px] text-gray-700 leading-relaxed max-w-sm">{exp.description}</p>
+              <span className="text-[12px] text-gray-500 leading-tight">{exp.location}</span>
+              <span className="text-[12px] text-gray-500 leading-tight mb-2">{exp.role}</span>
+              <p className="text-[16px] leading-relaxed max-w-sm">{exp.description}</p>
             </div>
           </motion.div>
         ))}
@@ -115,7 +115,7 @@ export const ExperienceContent = () => {
             viewport={viewport}
           >
             <div className="py-3">
-              <p className="text-[12px] text-gray-800 leading-snug">
+              <p className="text-[16px] text-gray-800 leading-snug">
                 {award.text}{" "}
                 <span className="font-bold">{award.year}</span>
               </p>

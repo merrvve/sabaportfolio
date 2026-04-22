@@ -59,8 +59,8 @@ const ProjectsBox = () => (
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="relative flex min-h-screen">
-      {/* Left label column — matches "About Me" style */}
-      <div className="relative w-24 shrink-0 flex items-center justify-center">
+      {/* Left label column — hidden on mobile */}
+      <div className="relative w-24 shrink-0 hidden md:flex items-center justify-center">
         <ProjectsBox />
         <motion.h1
           className="p-0 font-bold text-6xl -rotate-90 whitespace-nowrap relative z-10"
@@ -75,6 +75,10 @@ export const ProjectsSection = () => {
 
       {/* Project list */}
       <div className="flex-1 flex flex-col justify-center py-10 pr-6 md:pr-24">
+        {/* Mobile-only horizontal title */}
+        <h1 className="block md:hidden font-bold text-3xl italic px-6 pb-6 scroll-animation scroll-animation-default">
+          Projects
+        </h1>
         {projects.map((project, i) => (
           <motion.div
             key={project.num}
