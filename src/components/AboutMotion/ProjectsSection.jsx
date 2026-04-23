@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { draw } from "./draw";
 
 const viewport = { once: true, amount: 0.1 };
@@ -57,6 +58,8 @@ const ProjectsBox = () => (
 );
 
 export const ProjectsSection = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <section id="projects" className="relative flex min-h-screen">
       {/* Left label column — hidden on mobile */}
@@ -82,14 +85,38 @@ export const ProjectsSection = () => {
         {projects.map((project, i) => (
           <motion.div
             key={project.num}
+            layout
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
+            transition={{
+              opacity: { duration: 0.5, delay: i * 0.15, ease: "easeOut" },
+              y: { duration: 0.5, delay: i * 0.15, ease: "easeOut" },
+              layout: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+            }}
             viewport={viewport}
           >
-            <div
-              className="flex items-center gap-8 px-6 py-7"
+            <motion.div
+              className="flex items-center gap-8 px-6 overflow-hidden cursor-pointer"
               style={{ background: project.gradient }}
+              onHoverStart={() => setHoveredIndex(i)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              animate={
+                hoveredIndex === i
+                  ? {
+                      paddingTop: 48,
+                      paddingBottom: 48,
+                      borderRadius: 16,
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                      transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+                    }
+                  : {
+                      paddingTop: 28,
+                      paddingBottom: 28,
+                      borderRadius: 0,
+                      boxShadow: "0 0px 0px rgba(0,0,0,0)",
+                      transition: { duration: 0.5, ease: "easeInOut", delay: 0.2 },
+                    }
+              }
             >
               <span
                 className="text-6xl md:text-7xl font-light text-gray-300 select-none leading-none w-24 shrink-0"
@@ -98,7 +125,7 @@ export const ProjectsSection = () => {
                 {project.num}
               </span>
 
-              <div className="flex flex-col gap-0.5">
+              <div className="flex flex-col gap-0.5 flex-1">
                 <span
                   className="font-bold text-xl md:text-2xl leading-tight"
                   style={{ fontFamily: "Georgia, serif" }}
@@ -107,7 +134,34 @@ export const ProjectsSection = () => {
                 </span>
                 <span className="text-xs text-gray-500">{project.category}</span>
               </div>
-            </div>
+
+              <AnimatePresence>
+                {hoveredIndex === i && (
+                  <motion.div
+                    key="img-placeholder"
+                    className="shrink-0 rounded-lg bg-white/40"
+                    style={{ border: "1.5px solid rgba(0,0,0,0.08)" }}
+                    variants={{
+                      enter: {
+                        opacity: 1,
+                        width: 160,
+                        height: 160,
+                        transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+                      },
+                      exit: {
+                        opacity: 0,
+                        width: 0,
+                        height: 160,
+                        transition: { duration: 0.45, ease: "easeOut" },
+                      },
+                    }}
+                    initial={{ opacity: 0, width: 0, height: 160 }}
+                    animate="enter"
+                    exit="exit"
+                  />
+                )}
+              </AnimatePresence>
+            </motion.div>
 
             {i < projects.length - 1 && (
               <motion.div
