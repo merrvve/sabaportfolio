@@ -283,7 +283,7 @@ export default function HeroAnimation() {
 
       <div
         id="h2w"
-        className="w-full max-w-sm md:max-w-124 px-4 mb-10 "
+        className="w-full max-w-xs md:max-w-80 px-4 mb-10 "
         style={{ opacity: 0 }}
       >
         <Hero2Svg pathClass="h2p" />
