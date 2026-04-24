@@ -85,6 +85,117 @@ function Hero2Svg({ pathClass }) {
 const scrollTo = (id) =>
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+const ACCENT = "#000";
+const ICON_BASE = {
+  width: "30px",
+  position: "absolute",
+  top: "calc(50% - 15px)",
+  left: "calc(50% - 15px)",
+  fill: ACCENT,
+  stroke: "#000",
+};
+
+function PhoneIcon({ hovered }) {
+  return (
+    <motion.svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      stroke="#000"
+      style={{ ...ICON_BASE, rotate: -45 }}
+      animate={
+        hovered
+          ? {
+              rotate: [-45, -65, -25, -65, -25, -45],
+              scale: [1, 0.7, 1, 0.85, 1, 1],
+            }
+          : { rotate: -45, scale: 1 }
+      }
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+    </motion.svg>
+  );
+}
+
+function ArrowDownIcon({ hovered }) {
+  return (
+    <motion.svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 16 16"
+  style={{ ...ICON_BASE }} // ❌ removed transform here
+  animate={
+    hovered
+      ? {
+          rotate: -45,          // keep arrow angled correctly
+          y: [0, 6, -3, 6, 0],  // bounce
+          scale: [1, 0.9, 1, 0.95, 1],
+        }
+      : {
+          rotate: -45,
+          y: 0,
+          scale: 1,
+        }
+  }
+  transition={{ duration: 0.5, ease: "easeInOut" }}
+>
+  <path
+    fillRule="evenodd"
+    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+  />
+</motion.svg>
+  );
+}
+
+function HoverButton({ onClick, label, icon }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <button
+        onClick={onClick}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className="rounded-lg m-4"
+        style={{
+          display: "block",
+          width: hovered ? "160px" : "200px",
+          height: "50px",
+          lineHeight: "50px",
+          fontWeight: "bold",
+          background: hovered ? "transparent" : "#000",
+          textAlign: "center",
+          color: hovered ? ACCENT : "#fff",
+          textTransform: "uppercase",
+          letterSpacing: "1px",
+          border: "3px solid #000",
+          transition: "all .35s",
+          cursor: "pointer",
+          padding: 0,
+        }}
+      >
+        {label}
+      </button>
+      <div
+        className="rounded-full my-4 mx-2 "
+        style={{
+          width: "50px",
+          height: "50px",
+          border: `3px solid ${hovered ? ACCENT : "transparent"}`,
+          position: "absolute",
+          transform: "rotate(45deg)",
+          right: hovered ? "-25%" : "0",
+          top: "0",
+          zIndex: -1,
+          transition: "all .35s",
+          pointerEvents: "none",
+        }}
+      >
+        {icon(hovered)}
+      </div>
+    </div>
+  );
+}
+
 export default function HeroAnimation() {
   const [scope, animate] = useAnimate();
   const [showCTA, setShowCTA] = useState(false);
@@ -95,40 +206,40 @@ export default function HeroAnimation() {
       await animate(
         ".h1p",
         { pathLength: 1 },
-        { duration: 0.1, delay: stagger(0.07), ease: "easeInOut" }
+        { duration: 0.1, delay: stagger(0.07), ease: "easeInOut" },
       );
 
       // Phase 2 — fill hero1: fill fades in, stroke fades out
       await animate(
         ".h1p",
         { fillOpacity: 1, strokeOpacity: 0 },
-        { duration: 0.45, ease: "easeIn" }
+        { duration: 0.45, ease: "easeIn" },
       );
 
       // Phase 3 — morph: hero1 shrinks upward, hero2 rises from below simultaneously
       animate(
         "#h1w",
         { scale: 0.72, y: -16 },
-        { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+        { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
       );
       await animate(
         "#h2w",
         { opacity: 1, y: [40, 0] },
-        { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
+        { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
       );
 
       // Phase 4 — draw hero2 paths with stagger
       await animate(
         ".h2p",
         { pathLength: 1 },
-        { duration: 0.09, delay: stagger(0.06), ease: "easeInOut" }
+        { duration: 0.09, delay: stagger(0.06), ease: "easeInOut" },
       );
 
       // Phase 5 — fill hero2
       await animate(
         ".h2p",
         { fillOpacity: 1, strokeOpacity: 0 },
-        { duration: 0.4, ease: "easeIn" }
+        { duration: 0.4, ease: "easeIn" },
       );
 
       setShowCTA(true);
@@ -140,52 +251,61 @@ export default function HeroAnimation() {
       ref={scope}
       className="flex flex-col items-center justify-center gap-6 w-full h-full"
     >
+      <style>{`
+        #h1w, #h2w {
+          position: relative;
+          overflow: hidden;
+        }
+        #h1w::after, #h2w::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            45deg,
+            transparent 35%,
+            rgba(255,255,255,0.55) 50%,
+            transparent 65%
+          );
+          transform: translateX(-120%);
+          pointer-events: none;
+        }
+        #h1w:hover::after, #h2w:hover::after {
+          animation: svg-shine 1.2s ease forwards;
+        }
+        @keyframes svg-shine {
+          from { transform: translateX(-120%); }
+          to   { transform: translateX(120%); }
+        }
+      `}</style>
       <div id="h1w" className="w-full max-w-xl md:max-w-184 px-4">
         <Hero1Svg pathClass="h1p" />
       </div>
 
-      <div id="h2w" className="w-full max-w-sm md:max-w-124 px-4" style={{ opacity: 0 }}>
+      <div
+        id="h2w"
+        className="w-full max-w-sm md:max-w-124 px-4 mb-10 "
+        style={{ opacity: 0 }}
+      >
         <Hero2Svg pathClass="h2p" />
       </div>
 
       <motion.div
-        className="flex flex-col items-center gap-4 mt-2"
+        className="flex flex-col items-center gap-4 mt-2 mb-10"
         initial={{ opacity: 0, y: 16 }}
         animate={showCTA ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
       >
-        <div className="flex items-center gap-4">
-          <button
+        <div className="flex items-center gap-8">
+          <HoverButton
             onClick={() => scrollTo("contact")}
-            className="cursor-pointer rounded-lg ml-3 px-4 py-2 bg-black text-white hover:bg-slate-800 transition duration-500 whitespace-nowrap"
-          >
-            <span class="m-1">Contact Me</span>
-
-            <span class="m-1">
-              
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone w-[1.25rem] inline" viewBox="0 0 16 16">
-  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-</svg>
-                
-            </span>
-          </button>
-          <button
+            label="Contact Me"
+            icon={(h) => <PhoneIcon hovered={h} />}
+          />
+          <HoverButton
             onClick={() => scrollTo("projects")}
-            className="cursor-pointer rounded-lg ml-3 px-4 py-2 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors whitespace-nowrap"
-          >
-            <span class="m-1">See My Work</span>
-
-            <span class="m-1">
-              
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down inline" viewBox="0 0 16 16">
-  <path fillRule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
-</svg>
-                
-            </span>
-            
-
-            
-          </button>
+            label="See My Work"
+            icon={(h) => <ArrowDownIcon hovered={h} />}
+          />
         </div>
 
         <motion.div
@@ -198,7 +318,7 @@ export default function HeroAnimation() {
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="currentColor"
+            stroke="#000"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"

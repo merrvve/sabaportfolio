@@ -4,7 +4,7 @@ import { useState } from "react";
 const viewport = { once: true, amount: 0.2 };
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 40  },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, delay, ease: "easeOut" },
   viewport,
@@ -20,7 +20,7 @@ function CopyButton({ text }) {
   return (
     <button
       onClick={copy}
-      className="ml-3 text-[#3d4f8a] hover:text-[#1a2a6c] transition-colors"
+      className="cursor-pointer ml-3 text-[#3d4f8a] hover:text-[#1a2a6c] transition-colors"
       title="Copy"
     >
       {copied ? (
@@ -61,12 +61,12 @@ const FigmaIcon = () => (
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="contact-section relative flex flex-col items-center justify-center min-h-screen px-4 py-20">
+    <section id="contact" className="contact-section relative flex flex-col items-center justify-center min-h-screen px-4 py-20" style={{ perspective: "1000px" }}>
       {/* Card */}
       <motion.div
         className="contact-card relative w-full max-w-xl rounded-3xl px-8 sm:px-12 py-14 sm:py-16 flex flex-col items-center gap-6"
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 60, z: -500 }}
+        whileInView={{ opacity: 1, y: 0, z: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={viewport}
       >
@@ -143,15 +143,15 @@ export const ContactSection = () => {
       </motion.div>
 
       {/* Footer */}
-      <motion.p
-        className="absolute bottom-6 text-sm text-[#3d4f8a]/70"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        viewport={viewport}
-      >
-        © 2024 | Designed by Saba Şen and coded by Merve Keskin
-      </motion.p>
+     <motion.p
+  className="absolute bottom-6 text-sm text-[#3d4f8a]/70 p-2 text-center md:text-left"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ duration: 0.6, delay: 0.8 }}
+  viewport={viewport}
+>
+  © 2026 | Designed and coded by Saba Şen & Merve Keskin
+</motion.p>
     </section>
   );
 };

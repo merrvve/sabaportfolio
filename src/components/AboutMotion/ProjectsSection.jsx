@@ -77,7 +77,7 @@ export const ProjectsSection = () => {
       </div>
 
       {/* Project list */}
-      <div className="flex-1 flex flex-col justify-center py-10 pr-6 md:pr-24">
+      <div className="flex-1 flex flex-col justify-center py-10 md:pr-2">
         {/* Mobile-only horizontal title */}
         <h1 className="block md:hidden font-bold text-3xl italic px-6 pb-6 scroll-animation scroll-animation-default">
           Projects
@@ -96,7 +96,7 @@ export const ProjectsSection = () => {
             viewport={viewport}
           >
             <motion.div
-              className="flex items-center gap-8 px-6 overflow-hidden cursor-pointer"
+              className="relative flex items-center gap-8 px-6 cursor-pointer"
               style={{ background: project.gradient }}
               onHoverStart={() => setHoveredIndex(i)}
               onHoverEnd={() => setHoveredIndex(null)}
@@ -114,10 +114,35 @@ export const ProjectsSection = () => {
                       paddingBottom: 28,
                       borderRadius: 0,
                       boxShadow: "0 0px 0px rgba(0,0,0,0)",
-                      transition: { duration: 0.5, ease: "easeInOut", delay: 0.2 },
+                      transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
                     }
               }
             >
+              {/* Top-right arrow */}
+              <AnimatePresence>
+                {hoveredIndex === i && (
+                  <motion.div
+                    key="arrow"
+                    className="absolute top-3 right-3"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ transformOrigin: "top right" }}
+                  >
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <path
+                        d="M5 17L17 5M17 5H8M17 5V14"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <span
                 className="text-6xl md:text-7xl font-light text-gray-300 select-none leading-none w-24 shrink-0"
                 style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.04em" }}
@@ -139,39 +164,35 @@ export const ProjectsSection = () => {
                 {hoveredIndex === i && (
                   <motion.div
                     key="img-placeholder"
-                    className="shrink-0 rounded-lg bg-white/40"
-                    style={{ border: "1.5px solid rgba(0,0,0,0.08)" }}
-                    variants={{
-                      enter: {
-                        opacity: 1,
-                        width: 160,
-                        height: 160,
-                        transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
-                      },
-                      exit: {
-                        opacity: 0,
-                        width: 0,
-                        height: 160,
-                        transition: { duration: 0.45, ease: "easeOut" },
-                      },
+                    className="shrink-0 rounded-lg bg-white/40 overflow-hidden"
+                    style={{
+                      border: "1.5px solid rgba(0,0,0,0.08)",
+                      width: 160,
+                      transformOrigin: "center center",
                     }}
-                    initial={{ opacity: 0, width: 0, height: 160 }}
-                    animate="enter"
-                    exit="exit"
+                    initial={{ opacity: 0, scale: 0.8, height: 0 }}
+                    animate={{ opacity: 1, scale: 1, height: 300 }}
+                    exit={{ opacity: 0, scale: 0.8, height: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   />
                 )}
               </AnimatePresence>
             </motion.div>
 
-            {i < projects.length - 1 && (
-              <motion.div
-                className="h-px bg-gray-300"
-                initial={{ scaleX: 0, originX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 0.5, delay: i * 0.15 + 0.25, ease: "easeOut" }}
-                viewport={viewport}
-              />
-            )}
+            <AnimatePresence>
+              {i < projects.length - 1 && hoveredIndex !== i && hoveredIndex !== i + 1 && (
+                <motion.div
+                  key={`divider-${i}`}
+                  className="h-px bg-gray-300"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] } }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.5, delay: i * 0.15 + 0.25, ease: "easeOut" }}
+                  viewport={viewport}
+                />
+              )}
+            </AnimatePresence>
           </motion.div>
         ))}
       </div>
