@@ -87,7 +87,7 @@ import { LeftBottom } from "./AboutMotion/LeftBottom";
 
   <!-- Right content -->
   <div class="flex-1 flex flex-col relative">
-    <div class="absolute top-2 right-0 md:top-4 md:right-4">
+    <div class="hidden md:flex absolute top-2 right-0 md:top-4 md:right-4">
       <TopRight client:load />
     </div>
     <div
@@ -154,7 +154,7 @@ import { LeftBottom } from "./AboutMotion/LeftBottom";
         </div>
         <div class="hidden md:flex flex-col mt-4 scroll-animation scroll-animation-default delay-1050">
           <button
-            class="w-70 mr-6 cursor-pointer rounded-lg p-2 bg-black text-white hover:bg-slate-800 transition duration-500 delay-150 mb-5"
+            class="w-70 mr-6 cursor-pointer rounded-lg p-2 bg-black text-white  mb-5  hover:bg-transparent hover:text-black border-2 border-black transition duration-500"
           >
             <span class="m-1"> Download CV </span>
             <span class="m-1">
@@ -169,15 +169,26 @@ import { LeftBottom } from "./AboutMotion/LeftBottom";
               >
             </span>
           </button>
-          <div class="flex gap-2">
-            <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16.8363 22.4483V19.2414C16.9478 18.2371 16.6598 17.2292 16.0345 16.4354C18.4397 16.4354 20.8449 14.8319 20.8449 12.0259C20.909 11.0237 20.6284 10.0376 20.0431 9.21985C20.2676 8.29787 20.2676 7.3358 20.0431 6.41382C20.0431 6.41382 19.2414 6.41382 17.638 7.6164C15.5214 7.21554 13.3407 7.21554 11.2242 7.6164C9.62073 6.41382 8.81901 6.41382 8.81901 6.41382C8.57849 7.3358 8.57849 8.29787 8.81901 9.21985C8.23525 10.0343 7.95192 11.026 8.01729 12.0259C8.01729 14.8319 10.4225 16.4354 12.8276 16.4354C12.515 16.8282 12.2825 17.2772 12.1462 17.7582C12.0099 18.2392 11.9698 18.7443 12.0259 19.2414V22.4483" stroke="#4B5563" stroke-width="1.60345" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M12.0259 19.2414C8.41011 20.8448 8.01727 17.6379 6.41382 17.6379" stroke="#4B5563" stroke-width="1.60345" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22.5171 8.01727C22.5171 8.01727 21.9559 9.70089 20.9137 10.7431C22.1965 18.7604 13.3775 24.613 6.48267 20.0431C8.24646 20.1233 10.0103 19.5621 11.293 18.4397C7.28439 17.2371 5.28008 12.5069 7.28439 8.81899C9.04818 10.9035 11.774 12.1061 14.4999 12.0259C13.7784 8.65865 17.7068 6.73451 20.112 8.97934C20.9939 8.97934 22.5171 8.01727 22.5171 8.01727Z" stroke="#4B5563" stroke-width="1.60345" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            <img src="img/figma.png" width="29" height="29" />
+          <div class="flex gap-4">
+            <a href="#" aria-label="GitHub" class="hover:opacity-70 transition-opacity">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter" class="hover:opacity-70 transition-opacity">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Figma" class="hover:opacity-70 transition-opacity">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
+                <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>
+                <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+                <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path>
+                <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -216,42 +227,26 @@ import { LeftBottom } from "./AboutMotion/LeftBottom";
             >
           </span>
         </button>
-        <div class="md:hidden flex gap-2">
-          <svg
-            width="29"
-            height="29"
-            viewBox="0 0 29 29"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16.8363 22.4483V19.2414C16.9478 18.2371 16.6598 17.2292 16.0345 16.4354C18.4397 16.4354 20.8449 14.8319 20.8449 12.0259C20.909 11.0237 20.6284 10.0376 20.0431 9.21985C20.2676 8.29787 20.2676 7.3358 20.0431 6.41382C20.0431 6.41382 19.2414 6.41382 17.638 7.6164C15.5214 7.21554 13.3407 7.21554 11.2242 7.6164C9.62073 6.41382 8.81901 6.41382 8.81901 6.41382C8.57849 7.3358 8.57849 8.29787 8.81901 9.21985C8.23525 10.0343 7.95192 11.026 8.01729 12.0259C8.01729 14.8319 10.4225 16.4354 12.8276 16.4354C12.515 16.8282 12.2825 17.2772 12.1462 17.7582C12.0099 18.2392 11.9698 18.7443 12.0259 19.2414V22.4483"
-              stroke="#4B5563"
-              stroke-width="1.60345"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path
-              d="M12.0259 19.2414C8.41011 20.8448 8.01727 17.6379 6.41382 17.6379"
-              stroke="#4B5563"
-              stroke-width="1.60345"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <svg
-            width="29"
-            height="29"
-            viewBox="0 0 29 29"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M22.5171 8.01727C22.5171 8.01727 21.9559 9.70089 20.9137 10.7431C22.1965 18.7604 13.3775 24.613 6.48267 20.0431C8.24646 20.1233 10.0103 19.5621 11.293 18.4397C7.28439 17.2371 5.28008 12.5069 7.28439 8.81899C9.04818 10.9035 11.774 12.1061 14.4999 12.0259C13.7784 8.65865 17.7068 6.73451 20.112 8.97934C20.9939 8.97934 22.5171 8.01727 22.5171 8.01727Z"
-              stroke="#4B5563"
-              stroke-width="1.60345"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <img src="img/figma.png" width="29" height="29" />
+        <div class="md:hidden flex gap-4">
+          <a href="#" aria-label="GitHub" class="hover:opacity-70 transition-opacity">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="hover:opacity-70 transition-opacity">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="Figma" class="hover:opacity-70 transition-opacity">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
+              <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>
+              <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+              <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path>
+              <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path>
+            </svg>
+          </a>
         </div>
       </div>
       <div

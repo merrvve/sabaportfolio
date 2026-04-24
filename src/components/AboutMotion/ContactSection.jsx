@@ -83,8 +83,10 @@ export const ContactSection = () => {
           className="text-center text-[#3d4f8a] text-base leading-relaxed"
           {...fadeUp(0.25)}
         >
-          What's next? Feel free to reach out to me
+          What's next? 
           <br />
+          Feel free to reach out to me
+          
           if you're looking for a designer.
         </motion.p>
 
@@ -97,7 +99,7 @@ export const ContactSection = () => {
             <rect x="2" y="4" width="20" height="16" rx="2" />
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
           </svg>
-          <span className="text-[#1a2a6c] font-bold text-base sm:text-xl md:text-2xl min-w-0 break-all" style={{ fontFamily: "Inter, sans-serif" }}>
+          <span className="text-[#1a2a6c] font-bold text-base sm:text-lg md:text-2xl min-w-0 break-all" style={{ fontFamily: "Inter, sans-serif" }}>
             sabanursen1@gmail.com
           </span>
           <CopyButton text="sabanursen1@gmail.com" />
@@ -111,7 +113,7 @@ export const ContactSection = () => {
           <svg className="shrink-0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a2a6c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11 19.79 19.79 0 0 1 1.61 2.38 2 2 0 0 1 3.58 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 15z" transform="translate(1 1)" />
           </svg>
-          <span className="text-[#1a2a6c] font-bold text-base sm:text-xl md:text-2xl min-w-0" style={{ fontFamily: "Inter, sans-serif" }}>
+          <span className="text-[#1a2a6c] font-bold text-base sm:text-lg md:text-2xl min-w-0" style={{ fontFamily: "Inter, sans-serif" }}>
             +90 506 693 8393
           </span>
           <CopyButton text="+905066938393" />
@@ -119,7 +121,7 @@ export const ContactSection = () => {
 
         {/* Platforms */}
         <motion.p
-          className="text-[#6b7abd] text-sm mt-4"
+          className=" text-[#3d4f8a] text-sm mt-4 text-center"
           {...fadeUp(0.55)}
         >
           You may also find me on these platforms!
@@ -150,7 +152,15 @@ export const ContactSection = () => {
   transition={{ duration: 0.6, delay: 0.8 }}
   viewport={viewport}
 >
-  © 2026 | Designed and coded by Saba Şen & Merve Keskin
+  © 2026 | Designed and coded by Saba Şen &amp;{" "}
+<a
+  href="https://github.com/merrvve"
+  className="hover:text-black hover:underline hover:underline-offset-4 transition-colors duration-300"
+  target="_blank"
+>
+  Merve Keskin
+</a>
+  
 </motion.p>
     </section>
   );

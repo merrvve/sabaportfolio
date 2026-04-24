@@ -155,10 +155,10 @@ function HoverButton({ onClick, label, icon }) {
         onClick={onClick}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="rounded-lg m-4"
+        className="rounded-lg m-2 sm:m-4"
         style={{
           display: "block",
-          width: hovered ? "160px" : "200px",
+          width: hovered ? "min(160px, 34vw)" : "min(200px, 43vw)",
           height: "50px",
           lineHeight: "50px",
           fontWeight: "bold",
@@ -295,7 +295,7 @@ export default function HeroAnimation() {
         animate={showCTA ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
       >
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-2 sm:gap-8">
           <HoverButton
             onClick={() => scrollTo("contact")}
             label="Contact Me"
