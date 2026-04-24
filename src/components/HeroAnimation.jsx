@@ -277,7 +277,7 @@ export default function HeroAnimation() {
           to   { transform: translateX(120%); }
         }
       `}</style>
-      <div id="h1w" className="w-full max-w-xl md:max-w-184 px-4">
+      <div id="h1w" className="w-full max-w-lg md:max-w-xl px-4">
         <Hero1Svg pathClass="h1p" />
       </div>
 
